@@ -1,0 +1,119 @@
+.main-bar{
+    width: calc(100% - 300px - 25px);
+    float: left;
+    margin: 25px 0px 0 0;
+    padding: 0;
+}
+
+.main-bar-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-bar-header h1{
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.main-bar-header .ask-btn{
+    line-height: 1.5;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: hsl(210, 77%, 46%);
+    color: white;
+    border: none;
+    transition: 0.2s;
+}
+
+.main-bar-header .ask-btn:hover{
+    background-color: hsl(210, 77%, 36%);
+}
+
+.display-question-container{
+    display: flex;
+    align-items: center;
+    /* min-height: 125px; */
+    max-height: 150px;
+    font-size: 13px;
+    border-top: 1px solid rgb(219, 217, 217);
+    border-bottom: 1px solid rgb(219, 217, 217);
+}
+
+.user-rating{
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    margin: 15px 0 10px 0;
+}
+
+.user-rating div{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    color: gray;
+    margin: 0px 0 13px 0;
+}
+.user-rating div p{
+    padding: 0 2px;
+    margin: 0;
+}
+
+.display-question-details{
+    flex-grow: 1;
+    /* flex-wrap: wrap; */
+    min-height: 105px;
+    margin: 15px 0px 0px 15px;
+}
+
+.question-title-link{
+    position: relative;
+    flex-wrap: wrap;
+    /* bottom:5px; */
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: hsl(210, 77%, 46%);
+    transition: 0.2s;
+}
+.question-title-link:hover{
+    color: hsl(210, 77%, 36%);
+}
+
+.question-answer{
+    font-size: 13.5px;
+    margin: 5px 0 0 0;
+}
+
+.display-tags{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.display-tags p{
+    font-size: 12px;
+    padding: 2px;
+    margin: 0px 7px 0 0;
+    background-color: rgb(231, 241, 250);
+    color: #3657c5;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.1s ease-in;
+}
+.display-tags p:hover{
+    background-color: rgb(204, 229, 251);
+    color: #2e4282;
+}
+
+.tags-user{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    color: hsl(210, 77%, 36%);
+}
+.tags-user span{
+    color: rgb(97, 95, 95);
+}

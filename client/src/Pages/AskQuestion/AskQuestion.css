@@ -1,0 +1,86 @@
+.ask-question{
+    width: 100%;
+    margin: 100px 150px;
+}
+.ask-ques-container{
+    width: 56.3%;
+    display: flex;
+    flex-direction: column;
+}
+
+.how-write-ques{
+    border: 1px solid rgb(161, 189, 234);
+    border-radius: 5px;
+    background-color: hsl(210, 80%, 96%);
+    color: rgb(51, 50, 50);
+    padding: 20px 30px;
+    font-size: 15px;
+    margin: 10px 0 20px 0;
+}
+.how-write-ques h4{
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(48, 47, 47);
+    margin: 0;
+}
+.how-write-ques p{
+    margin: 10px 0;
+}
+.how-write-ques h5, .how-write-ques ul{
+    font-size: 13px;
+    margin: 0;
+}
+/* ------------------------------------------------------------- */
+
+.title-div{
+    border: 1px solid rgb(222, 222, 222);
+    border-radius: 5px;
+    background-color: hsl(0,0%,100%);
+    margin: 10px 0;
+}
+
+.title-div form label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 30px;
+}
+.title-div form label h4{
+    font-size: 16px;
+    color: rgb(55, 55, 55);
+    margin: 0;
+    padding: 0;
+}
+.title-div form label p{
+    margin: 3px 0;
+    padding: 0;
+    font-size: 12px;
+    color: rgb(133, 133, 133);
+}
+.title-div form label input, .title-div form label textarea{
+    margin: 10px 0 8px 0;
+    padding: 10px;
+    border-radius: 8px;
+    outline-color: hsl(210, 77%, 46%);
+    outline-offset: 3.5px;
+    border: 1px solid rgb(209, 208, 208);
+    font-family: '-apple-system', 'BlinkMacSystemFont', 'Liberation Sans', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.detail-input{
+    height: 250px;
+}
+
+.title-div form label input::placeholder{
+    font-size: 13px;
+    color: rgb(182, 181, 181);
+}
+.title-div form label button, .title-btn{
+    width: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(210, 77%, 46%) ;
+    color: white;
+    cursor: pointer;
+}

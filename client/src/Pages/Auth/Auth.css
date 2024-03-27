@@ -1,0 +1,122 @@
+.auth-section{
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: #f1f2f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signupLogo{
+    width: 200px;
+    height: 50px;
+}
+.auth-container-1{
+    padding: 20px;
+    margin: 0px 50px 20px 0px;
+}
+
+.loginLogo{
+    padding: 20px 30px;
+    width: 37px;
+}
+
+.login-btn{
+    width: 123%;
+    margin-bottom: 10px;
+    padding: 12px 5px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.signup-btn{
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px 5px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.auth-container-2{
+    min-width: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-container-2 form{
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px 25px 25px 25px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 5%),
+     0 20px 48px rgb(0 0 0 / 5%),
+     0 1px 4px rgb(0 0 0 / 10%);
+}
+
+.auth-container-2 form label input{
+    padding: 7px;
+    width: calc(100% - 23px);
+    border: 1px solid #0000003e;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+.auth-container-2 form label:nth-child(1) h4,
+.auth-container-2 form label:nth-child(2) h4,
+.auth-container-2 form label:nth-child(3) h4{
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.auth-btn{
+    margin-top: 17px;
+    padding: 12px 5px;
+    background-color: #009dff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 13px;
+    font-weight: 500;
+}
+.auth-btn:hover{
+    background-color: #018ce3;
+}
+
+
+
+.horizontalLine{
+    height: 0.1px;
+    margin: 17px 0 0 0;
+    background-color: #0000003e;
+}
+
+.handle-switch-btn{
+    background-color: transparent;
+    color: #007ac6;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.isAccount{
+    margin: 40px 0 0 0;
+}
+.isTalent{
+    margin: 10px 0;
+}

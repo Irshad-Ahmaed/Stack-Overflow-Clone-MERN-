@@ -1,0 +1,75 @@
+.right-sidebar{
+    float: right;
+    width: 300px;
+    margin: 40px 0px 15px 24px;
+    font-size: 13px;
+}
+
+.widget{
+    margin-top: 10px;
+    box-sizing: 3px 3px 10px rgb(0 0 0 / 5%), -3px -3px 10px rgb(0 0 0 / 5%);
+    border: 1px solid #ef8336b9;
+    border-radius: 3px;
+}
+
+.widget h4{
+    color: rgba(0, 0, 0, 0.692);
+    background-color: #fff2c8;
+    margin: 0;
+    padding: 15px;
+    border-top: 1px solid #ef8336b9;
+    border-bottom: 1px solid #ef8336b9;
+}
+
+.right-sidebar-div-1{
+    background-color: #fdf7e2;
+    padding: 0 10px 2px 15px;
+}
+
+.right-sidebar-div-2{
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+}
+
+.right-sidebar-div-2 p{
+    color: rgba(0, 0, 0, 0.773);
+    margin: 8px 0;
+    padding: 0 0px 0 10px;
+}
+
+.UpEventsSpan {
+    color: rgb(206, 2, 2);
+}
+
+.widget-tags{
+    margin-top: 40px;
+}
+
+.widget-tags h3{
+    color: rgba(0, 0, 0, 0.822);
+    margin: 30px 0 20px 0;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.widget-tags-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.widget-tags-div p{
+    padding: 5px;
+    margin: 10px 0 0 0;
+    background-color: rgb(231, 241, 250);
+    color: #3657c5;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.1s ease-in;
+}
+.widget-tags-div p:hover{
+    background-color: rgb(204, 229, 251);
+    color: #2e4282;
+}
