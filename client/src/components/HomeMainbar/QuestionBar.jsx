@@ -11,8 +11,12 @@ const QuestionBar = ({question}) => {
           </div>
 
           <div className='display-votes-ans'>
-              <p>{question.noOfAnswer}</p>
-              <p>answer</p>
+              {
+                question.noOfAnswer > 0 ?
+                <span className='answer-btn'>{question.noOfAnswer} {question.noOfAnswer > 1 ? 'answers' : 'answer'}</span>
+                :
+                <p>{question.noOfAnswer} answer</p>
+              }
           </div>
 
           <div className='display-votes-ans'>
@@ -23,10 +27,10 @@ const QuestionBar = ({question}) => {
 
         <div className='display-question-details'>
             <div>
-              <Link to={`/Questions/${question.id}`} className='question-title-link'>{question.questionTitle}</Link>
+              <Link to={`/Questions/${question._id}`} className='question-title-link'>{question.questionTitle}</Link>
             </div>
 
-            <p className='question-answer'>{question.shortAnswer}</p>
+            <p className='question-answer'>{question.detailQuestion}</p>
             
             <div className='tags-user'>
               <div className='display-tags'>

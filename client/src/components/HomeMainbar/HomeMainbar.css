@@ -61,6 +61,14 @@
     margin: 0;
 }
 
+.answer-btn{
+    border: 1px solid rgb(38, 148, 66);
+    border-radius: 5px;
+    padding: 3px 10px;
+    color: rgb(38, 148, 66);
+    
+}
+
 .display-question-details{
     flex-grow: 1;
     /* flex-wrap: wrap; */
