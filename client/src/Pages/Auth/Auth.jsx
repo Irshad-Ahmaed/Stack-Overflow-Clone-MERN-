@@ -1,16 +1,27 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import './Auth.css'
 import AboutAuth from './AboutAuth'
 import icon from '../../assets/SO_icon.png'
 
-const Auth = () => {
-
-    const [isSignup, setIsSignup] = useState(false)
+const Auth = ({userVal}) => {
+    let location = useLocation()
+    const [isSignup, setIsSignup] = useState(userVal)
 
     const handleSwitch = () =>{
-        setIsSignup(!isSignup)  
+        setIsSignup(!isSignup)
+        location.pathname = "/Auth/"+ isSignup === true ? "login" : "signup"
     }
+
+    if(location.pathname === '/Auth/login' && isSignup === true){
+        window.location.reload();
+    }
+    else if (location.pathname === '/Auth/signup' && isSignup === false){
+        window.location.reload();
+    }
+
+    
 
   return (
     <section className='auth-section'>

@@ -28,8 +28,8 @@ function Navbar() {
 
             { User === null ?
                 <>
-                  <Link to='/Auth' className='nav-item nav-links'>Log in</Link>
-                  <Link to='/Auth' className='nav-item nav-links signup'>Sign up</Link>
+                  <Link to='/Auth/login' className='nav-item nav-links'>Log in</Link>
+                  <Link to='/Auth/signup' className='nav-item nav-links signup'>Sign up</Link>
                 </> :
                 <>
                   <Link to='/User' className='nav-links avatarLogo'><Avatar backgroundColor='#009dff' px="10px" py="16px" borderRadius='50%' color='white'>Ir</Avatar></Link>
