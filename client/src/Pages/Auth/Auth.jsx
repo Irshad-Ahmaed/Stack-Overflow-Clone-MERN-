@@ -9,6 +9,9 @@ const Auth = ({userVal}) => {
     let location = useLocation()
     const [isSignup, setIsSignup] = useState(userVal)
 
+    const [Email, setEmail] = useState('')
+    const [Password, setPassword] = useState('')
+
     const handleSwitch = () =>{
         setIsSignup(!isSignup)
         location.pathname = "/Auth/"+ isSignup === true ? "login" : "signup"
@@ -21,7 +24,10 @@ const Auth = ({userVal}) => {
         window.location.reload();
     }
 
-    
+    const handleSubmit =(e)=>{
+        e.preventDefault()
+        console.log({Email, Password});
+    }
 
   return (
     <section className='auth-section'>
@@ -34,7 +40,7 @@ const Auth = ({userVal}) => {
             {!isSignup && <button style={{position:"relative", backgroundColor: "black"}} type='button' className='login-btn'> Log in with GitHub </button>}
             {!isSignup && <button style={{position:"relative", marginBottom:"0", backgroundColor: "rgba(32, 73, 188, 0.837)"}} type='button' className='login-btn'> Log in with Facebook </button>}
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     {isSignup && <h1 style={{fontSize:"30px", margin:0}}>Create your account</h1>}
                     { isSignup && <p style={{color: "#666767", fontSize:"13px"}}>By clicking “Sign up”, you agree to our 
@@ -45,14 +51,15 @@ const Auth = ({userVal}) => {
 
                 <label htmlFor='email'>
                     <h4>Email</h4>
-                    <input type='email' name='email' id='email' />
+                    <input type='email' name='email' id='email' onChange={(e) => {setEmail(e.target.value)}} />
                 </label>
+
                 <label htmlFor='password'>
                 <div style={{display: "flex", justifyContent: "space-between", marginTop:"5px"}}>
                     <h4>Password</h4>
                     { !isSignup && <p style={{color: "#007ac6", fontSize:"13px", marginBottom:"0"}}>Forgot password?</p>}
                 </div>
-                    <input type='password' name='password' id='password' />
+                    <input type='password' name='password' id='password' onChange={(e) => {setPassword(e.target.value)}} />
                 </label>
 
                 { isSignup && <p style={{color: "#666767", fontSize:"13px"}}>Must contain 8+ characters, including at least 1 letter and 1 <br/> number.</p>}
