@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import './Auth.css'
 import AboutAuth from './AboutAuth'
 import icon from '../../assets/SO_icon.png'
 
+import {useDispatch} from 'react-redux'
+import { signup, login } from '../../actions/auth'
+
 const Auth = ({userVal}) => {
     let location = useLocation()
     const [isSignup, setIsSignup] = useState(userVal)
 
-    const [Email, setEmail] = useState('')
-    const [Password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSwitch = () =>{
         setIsSignup(!isSignup)
@@ -26,7 +32,19 @@ const Auth = ({userVal}) => {
 
     const handleSubmit =(e)=>{
         e.preventDefault()
-        console.log({Email, Password});
+        // console.log({Email, Password});
+
+        if(!email || !password){
+            alert("Enter email or password")
+            window.location.reload();
+        }
+
+        if(isSignup){
+            dispatch(signup({email, password}, navigate))
+        }
+        else{
+            dispatch(login({email, password}, navigate))
+        }
     }
 
   return (

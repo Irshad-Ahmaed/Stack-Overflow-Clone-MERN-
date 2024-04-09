@@ -1,13 +1,28 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Link} from 'react-router-dom';
 import Logo from '../../assets/SO_logo.svg';
 import search from '../../assets/search.svg';
 import Avatar from '../../components/Avatar/Avatar';
 import "./Navbar.css";
 
-function Navbar() {
+import {useSelector, useDispatch} from 'react-redux'
+import { setCurrentUser } from '../../actions/currentUser';
 
-  let User = null;
+const Navbar = () => {
+  const dispatch = useDispatch()
+
+  let User = useSelector((state) => (state.currentUserReducer));
+
+  useEffect(() => {
+    dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))))
+
+  }, [dispatch])
+
+  const handleLogout =()=>{
+    window.location.reload();
+    dispatch(setCurrentUser(JSON.parse(localStorage.clear())))
+  }
+    
 
   return (
     <nav className='main-nav'>
@@ -33,7 +48,7 @@ function Navbar() {
                 </> :
                 <>
                   <Link to='/User' className='nav-links avatarLogo'><Avatar backgroundColor='#009dff' px="10px" py="16px" borderRadius='50%' color='white'>Ir</Avatar></Link>
-                  <button className='nav-item nav-links'>Log out</button>
+                  <button className='nav-item nav-links' onClick={handleLogout}>Log out</button>
                 </>
             }
 
