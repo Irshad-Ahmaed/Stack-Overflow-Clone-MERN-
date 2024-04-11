@@ -11,11 +11,11 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
+The page will reload when you make changes.
 
 ### `npm start for backend`
 
 Runs the app in the development mode.\
 Open [http://localhost:5005](http://localhost:5005) to view it in your browser.
 
-The page will reload when you make changes.\
+The page will reload when you make changes.
