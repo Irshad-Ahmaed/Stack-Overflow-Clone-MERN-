@@ -12,6 +12,7 @@ const Auth = ({userVal}) => {
     let location = useLocation()
     const [isSignup, setIsSignup] = useState(userVal)
 
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -40,7 +41,7 @@ const Auth = ({userVal}) => {
         }
 
         if(isSignup){
-            dispatch(signup({email, password}, navigate))
+            dispatch(signup({name, email, password}, navigate))
         }
         else{
             dispatch(login({email, password}, navigate))
@@ -67,16 +68,24 @@ const Auth = ({userVal}) => {
                     }
                 </div>
 
+                {
+                    isSignup &&
+                    <label htmlFor='name'>
+                        <h4>Name</h4>
+                        <input type='text' name='name' id='name' onChange={(e) => {setName(e.target.value)}} />
+                    </label>
+                }
+
                 <label htmlFor='email'>
                     <h4>Email</h4>
                     <input type='email' name='email' id='email' onChange={(e) => {setEmail(e.target.value)}} />
                 </label>
 
                 <label htmlFor='password'>
-                <div style={{display: "flex", justifyContent: "space-between", marginTop:"5px"}}>
-                    <h4>Password</h4>
-                    { !isSignup && <p style={{color: "#007ac6", fontSize:"13px", marginBottom:"0"}}>Forgot password?</p>}
-                </div>
+                    <div style={{display: "flex", justifyContent: "space-between", margin:"0"}}>
+                        <h4 style={{margin: "10px 0 5px 0"}}>Password</h4>
+                        { !isSignup && <p style={{color: "#007ac6", fontSize:"13px", marginBottom:"0"}}>Forgot password?</p>}
+                    </div>
                     <input type='password' name='password' id='password' onChange={(e) => {setPassword(e.target.value)}} />
                 </label>
 

@@ -3,6 +3,7 @@ import './AskQuestion.css'
 
 import {useDispatch, useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
+import {askQuestion} from '../../actions/question.js'
 
 const AskQuestion = () => {
     const [toggleNext, setToggleNext] = useState(false)
@@ -29,10 +30,14 @@ const AskQuestion = () => {
     const [questionBody, setQuestionBody] = useState('')
     const [questionTags, setQuestionTags] = useState('')
 
+    const dispatch = useDispatch()
+    const User = useSelector((state)=> (state.currentUserReducer))
+    const navigate = useNavigate()
+
     const handleSubmit = (e)=> {
         e.preventDefault()
         // console.log({questionTitle ,questionBody, questionTags})
-
+        dispatch(askQuestion({ questionTitle, questionBody, questionTags, userPosted: User.result.name }, navigate))
     }
 
     const handleEnter = (e) =>{
