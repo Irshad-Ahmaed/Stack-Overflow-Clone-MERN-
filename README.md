@@ -2,6 +2,11 @@
 
 use the command `npm i create-react-app myapp`
 
+# Packages you need to install on the client side
+
+`npm i redux`
+`npm i redux-thunk`
+
 ## Available Scripts
 
 In the project directory, you can run:
