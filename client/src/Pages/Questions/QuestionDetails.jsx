@@ -7,44 +7,46 @@ import downVote from '../../assets/down_icon.svg'
 import './Question.css'
 import Avatar from '../../components/Avatar/Avatar'
 import DisplayAnswer from './DisplayAnswer'
+import { useSelector } from 'react-redux'
 
 const QuestionDetails = () => {
 
   const {id} = useParams()
+  const questionList = useSelector(state => state.questionReducer)
 
-  let questionList = [{
-    _id: '1',
-    upVotes: 3,
-    downVotes: 1,
-    views: 4,
-    noOfAnswer: 2,
-    questionTitle: "What is a function?",
-    detailQuestion: "What is a function a how it works, I don't get it someone help please",
-    questionTags: ["java", "node.js", "react.js"],
-    userPosted: "Irshad",
-    userId: 1,
-    askedOn: "March 11",
-    modifiedOn: "Today",
-    answer:[{
-      answerBody: "Answer",
-      QAnswer: "A function is a relationship between inputs where each input is related to exactly one output.",
-      userAnswered: "Ahmad",
-      answeredOn: "March 12",
-      userId: '2',
-      ansUpVotes: 1,
-      ansDownVotes: 1
-    }]
-  }]
+  // let questionList = [{
+  //   _id: '1',
+  //   upVotes: 3,
+  //   downVotes: 1,
+  //   views: 4,
+  //   noOfAnswer: 2,
+  //   questionTitle: "What is a function?",
+  //   detailQuestion: "What is a function a how it works, I don't get it someone help please",
+  //   questionTags: ["java", "node.js", "react.js"],
+  //   userPosted: "Irshad",
+  //   userId: 1,
+  //   askedOn: "March 11",
+  //   modifiedOn: "Today",
+  //   answer:[{
+  //     answerBody: "Answer",
+  //     QAnswer: "A function is a relationship between inputs where each input is related to exactly one output.",
+  //     userAnswered: "Ahmad",
+  //     answeredOn: "March 12",
+  //     userId: '2',
+  //     ansUpVotes: 1,
+  //     ansDownVotes: 1
+  //   }]
+  // }]
 
   return (
     <div className='question-details-page'>
       {
-        questionList === null ? 
+        questionList.data === null ? 
         <h1>Loading...</h1>
         :
         <>
           {
-            questionList.filter((ques)=>
+            questionList.data.filter((ques)=>
               ques._id === id
             ).map((question) => (
               <div key={question._id}>
@@ -70,7 +72,7 @@ const QuestionDetails = () => {
                     </div>
 
                     <div className='ques-tags'>
-                      <p className='question-body'>{question.detailQuestion}</p>
+                      <p className='question-body'>{question.questionBody}</p>
                       <div className='question-detail-tag'>
                         {
                           question.questionTags.map((tag)=>(

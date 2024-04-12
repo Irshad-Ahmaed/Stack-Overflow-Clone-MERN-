@@ -6,16 +6,16 @@ const QuestionBar = ({question}) => {
     <div className='display-question-container'>
         <div className='user-rating'>
           <div className='display-votes-ans'>
-              <p style={{color:"black"}}>{question.votes}</p>
+              <p style={{color:"black"}}>{question.upVotes - question.downVotes}</p>
               <p style={{color:"black"}}>votes</p>
           </div>
 
           <div className='display-votes-ans'>
               {
                 question.noOfAnswer > 0 ?
-                <span className='answer-btn'>{question.noOfAnswer} {question.noOfAnswer > 1 ? 'answers' : 'answer'}</span>
+                <span className='answer-btn'>{question.noOfAnswers} answers</span>
                 :
-                <p>{question.noOfAnswer} answer</p>
+                <p>{question.noOfAnswers} answer</p>
               }
           </div>
 

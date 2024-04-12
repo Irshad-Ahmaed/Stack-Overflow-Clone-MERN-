@@ -3,11 +3,16 @@ import {useLocation, useNavigate} from 'react-router-dom'
 
 import './HomeMainbar.css'
 import QuestionList from './QuestionList'
+import { useSelector } from 'react-redux'
 
 const HomeMainbar = () => {
   
+  const location = useLocation()
   const user = 1;
   const navigate = useNavigate()
+
+  const questionList = useSelector(state => state.questionReducer)
+  console.log(questionList)
 
   const redirectTo = () =>{
     if(user === null){
@@ -19,21 +24,19 @@ const HomeMainbar = () => {
     }
   }
 
-  let questionList = [{
-    _id: 1,
-    votes: 3,
-    views: 4,
-    noOfAnswer: 2,
-    questionTitle: "What is a function?",
-    detailQuestion: "What is a function a how it works, I don't get it someone help please",
-    questionTags: ["java", "node.js", "react.js"],
-    shortAnswer: "A function is a relationship between inputs where each input is related to exactly one output.",
-    userPosted: "Irshad",
-    userId: 1,
-    askedOn: "March 11"
-  }]
-
-  const location = useLocation()
+  // let questionList = [{
+  //   _id: 1,
+  //   votes: 3,
+  //   views: 4,
+  //   noOfAnswer: 2,
+  //   questionTitle: "What is a function?",
+  //   detailQuestion: "What is a function a how it works, I don't get it someone help please",
+  //   questionTags: ["java", "node.js", "react.js"],
+  //   shortAnswer: "A function is a relationship between inputs where each input is related to exactly one output.",
+  //   userPosted: "Irshad",
+  //   userId: 1,
+  //   askedOn: "March 11"
+  // }]
 
   return (
     <div className='main-bar'>
@@ -45,10 +48,10 @@ const HomeMainbar = () => {
 
       <div className=''>
         {
-          questionList === null ? <h1>Loading...</h1> : 
+          questionList.data === null ? <h1>Loading...</h1> : 
           <>
-            <p>{questionList.length} questions</p>
-            <QuestionList questionList={questionList} />
+            <p>{questionList.data.length} questions</p>
+            <QuestionList questionList={questionList.data} />
           </>
         }
       </div>

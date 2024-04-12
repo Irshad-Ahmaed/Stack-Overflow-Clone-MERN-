@@ -17,11 +17,6 @@ const Navbar = () => {
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))))
 
   }, [dispatch])
-
-  const handleLogout =()=>{
-    window.location.reload();
-    dispatch(setCurrentUser(JSON.parse(localStorage.clear())))
-  }
     
 
   return (
@@ -48,7 +43,7 @@ const Navbar = () => {
                 </> :
                 <>
                   <Link to='/User' className='nav-links avatarLogo'><Avatar backgroundColor='#009dff' px="10px" py="16px" borderRadius='50%' color='white'>Ir</Avatar></Link>
-                  <button className='nav-item nav-links' onClick={handleLogout}>Log out</button>
+                  <button className='nav-item nav-links'>Log out</button>
                 </>
             }
 

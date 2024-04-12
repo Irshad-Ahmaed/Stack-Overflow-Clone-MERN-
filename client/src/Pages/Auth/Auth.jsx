@@ -19,7 +19,7 @@ const Auth = ({userVal}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleSwitch = () =>{
+    const handleSwitch = () => {
         setIsSignup(!isSignup)
         location.pathname = "/Auth/"+ isSignup === true ? "login" : "signup"
     }
