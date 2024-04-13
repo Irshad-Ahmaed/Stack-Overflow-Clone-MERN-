@@ -1,5 +1,5 @@
-import React from 'react'
-import {useParams, Link} from 'react-router-dom'
+import React, { useState } from 'react'
+import {useParams, Link, useNavigate} from 'react-router-dom'
 
 import upVote from '../../assets/up_icon.svg'
 import downVote from '../../assets/down_icon.svg'
@@ -7,7 +7,8 @@ import downVote from '../../assets/down_icon.svg'
 import './Question.css'
 import Avatar from '../../components/Avatar/Avatar'
 import DisplayAnswer from './DisplayAnswer'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { postAnswer } from '../../actions/question'
 
 const QuestionDetails = () => {
 
@@ -38,6 +39,26 @@ const QuestionDetails = () => {
   //   }]
   // }]
 
+  const [Answer, setAnswer] = useState('')
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const User = useSelector((state) => state.currentUserReducer)
+
+  const handlePostAns = (e, answerLength) => {
+    e.preventDefault();
+    if(User === null){
+      alert("Login or Signup for answer the question")
+    } else{
+      if(Answer === ''){
+        alert("Enter an answer before submitting")
+      } else{
+        dispatch(postAnswer({ id, noOfAnswer: answerLength + 1, answerBody: Answer, userAnswered: User.result.name }))
+        setAnswer('')
+      }
+    }
+  }
+
   return (
     <div className='question-details-page'>
       {
@@ -66,9 +87,9 @@ const QuestionDetails = () => {
                   <div className='question-detail-container-2'>
 
                     <div className='question-votes'>
-                      <div><img src={upVote} alt='upArrow' width='20' /></div>
+                      <div><img src={upVote} alt='upArrow' width='15' /></div>
                       <p>{question.upVotes - question.downVotes}</p>
-                      <div><img src={downVote} alt='downArrow' width='20' /></div>
+                      <div><img src={downVote} alt='downArrow' width='15' /></div>
                     </div>
 
                     <div className='ques-tags'>
@@ -107,18 +128,26 @@ const QuestionDetails = () => {
                   {
                     question.noOfAnswer !== 0 && (
                       <section className='ans-vote-display'>
-                        <h3 style={{fontWeight:"400",fontSize:"25px" }}>{question.noOfAnswer} {question.noOfAnswer > 1 ? 'Answers' : 'Answer'}</h3>
+                        {
+                          question.noOfAnswer === null
+                          ? 
+                          <h3> </h3>
+                          :
+                          <h3 style={{fontWeight:"400",fontSize:"22px" }}>{question.answer.length} {question.answer.length > 1 ? 'Answers' : 'Answer'}</h3>
+                        }
                         <DisplayAnswer key={question._id} question={question} />
                       </section>
                     ) 
                   }
 
                   <section className='post-ans-container' style={{width:"100%"}}>
-                    <h3 style={{fontWeight:"400",fontSize:"25px" }}>Your Answer</h3>
-                    <form>
-                      <textarea rows='11' cols='94' style={{border:"2px solid rgb(116, 115, 115, 0.5)"}}></textarea>
+                    <h3 style={{fontWeight:"400",fontSize:"21px" }}>Your Answer</h3>
+                    
+                    <form onSubmit={ (e) => handlePostAns(e, question.answer.length)}>
+                      <textarea rows='11' cols='94' onChange={(e) => setAnswer(e.target.value)} style={{border:"2px solid rgb(116, 115, 115, 0.5)"}}></textarea>
                       <input type='submit' className='post-ans-btn' value='Post Your Answer' />
                     </form>
+
                     <p>
                       Browse other questions tagged Browse other questions tagged <span> </span> 
                       {

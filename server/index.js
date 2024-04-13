@@ -4,6 +4,7 @@ import cors from 'cors'
 
 import userRoutes from './routes/users.js';
 import questionRoutes from './routes/Questions.js';
+import answerRoutes from './routes/Answers.js'
 
 const app = express();
 app.use(express.json({limit:"30mb", extended: true}))
@@ -18,6 +19,7 @@ app.get('/',(req,res) => {
 
 app.use('/user', userRoutes)
 app.use('/questions', questionRoutes)
+app.use('/answer', answerRoutes)
 
 const Connection_URL = "mongodb+srv://Irshad:Irshad7865@stack-overflow-clone.xtgnlnb.mongodb.net/?retryWrites=true&w=majority&appName=stack-overflow-clone"
 

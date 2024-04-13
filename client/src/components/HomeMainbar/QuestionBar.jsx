@@ -30,7 +30,7 @@ const QuestionBar = ({question}) => {
               <Link to={`/Questions/${question._id}`} className='question-title-link'>{question.questionTitle}</Link>
             </div>
 
-            <p className='question-answer'>{question.detailQuestion}</p>
+            {/* <p className='question-answer'>{question.questionBody}</p> */}
             
             <div className='tags-user'>
               <div className='display-tags'>

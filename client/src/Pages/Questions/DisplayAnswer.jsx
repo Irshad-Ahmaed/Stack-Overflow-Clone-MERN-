@@ -11,14 +11,14 @@ const DisplayAnswer = ({question}) => {
       {
         question.answer.map((ans)=>(
           <>
-            <div className='detail-ans-div'>
-              <div className='question-votes'>
-                <div><img src={upVote} alt='upArrow' width='20' /></div>
+            <div className='detail-ans-div' style={{display:'flex', justifyContent: "flex-start" }}>
+              <div className='question-votes' style={{padding: "0 10px 0 0"}}>
+                <div><img src={upVote} alt='upArrow' width='15' /></div>
                 <p>{ans.ansUpVotes - ans.ansDownVotes}</p>
-                <div><img src={downVote} alt='downArrow' width='20' /></div>
+                <div><img src={downVote} alt='downArrow' width='15' /></div>
               </div>
 
-              <div style={{margin:"15px 0 0 0"}}>{ans.QAnswer}</div>
+              <div style={{margin:"17px 0 0 0"}}>{ans.answerBody}</div>
             </div>
 
             <div className='question-action-user' style={{margin:"0 0px 72px 67px"}}>

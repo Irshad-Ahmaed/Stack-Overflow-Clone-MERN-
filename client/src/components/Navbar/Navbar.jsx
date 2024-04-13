@@ -42,8 +42,8 @@ const Navbar = () => {
                   <Link to='/Auth/signup' className='nav-item nav-links signup'>Sign up</Link>
                 </> :
                 <>
-                  <Link to='/User' className='nav-links avatarLogo'><Avatar backgroundColor='#009dff' px="10px" py="16px" borderRadius='50%' color='white'>Ir</Avatar></Link>
-                  <button className='nav-item nav-links'>Log out</button>
+                  <Link to='/User' style={{margin:"0 0px 0 0"}} className='nav-links avatarLogo'><Avatar backgroundColor='#009dff' fontSize="20px" px="5px" py="15px" borderRadius='50%' color='white'>{User.result.name.charAt(0).toUpperCase()}</Avatar></Link>
+                  <button className='nav-item nav-links' style={{margin:"0 50px 0 0px"}}>Log out</button>
                 </>
             }
 
