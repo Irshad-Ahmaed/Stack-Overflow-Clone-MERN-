@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React from 'react'
 import {Link} from 'react-router-dom'
 
@@ -12,10 +13,10 @@ const QuestionBar = ({question}) => {
 
           <div className='display-votes-ans'>
               {
-                question.noOfAnswer > 0 ?
-                <span className='answer-btn'>{question.noOfAnswers} answers</span>
+                question.answer.length > 0 ?
+                <span className='answer-btn'>{question.answer.length} answers</span>
                 :
-                <p>{question.noOfAnswers} answer</p>
+                <p>{question.answer.length} answer</p>
               }
           </div>
 
@@ -42,7 +43,7 @@ const QuestionBar = ({question}) => {
               </div>
 
               <p className='display-time'>
-                {question.userPosted} | <span>{question.askedOn}</span>
+                {question.userPosted} | <span>{moment(question.askedOn).fromNow()}</span>
               </p>
             </div>
         </div>

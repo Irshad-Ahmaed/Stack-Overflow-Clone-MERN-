@@ -12,6 +12,7 @@ import { postAnswer } from '../../actions/question'
 
 import moment from 'moment' // for managing the time.
 import copy from 'copy-to-clipboard'
+import { deleteQuestion } from '../../actions/question'
 
 const QuestionDetails = () => {
 
@@ -70,6 +71,10 @@ const QuestionDetails = () => {
     alert("Copied url: " + url + location.pathname)
   }
 
+  const handleDelete = () => {
+    dispatch(deleteQuestion(id, navigate))
+  }
+
   return (
     <div className='question-details-page'>
       {
@@ -117,7 +122,10 @@ const QuestionDetails = () => {
 
                         <div className='share-btn-s'>
                           <button type='button' onClick={handleShare}>Share</button>
-                          <button type='button'>Delete</button>
+                          {
+                            User?.result?._id === question?.userId &&
+                              (<button type='button' onClick={handleDelete}>Delete</button>)
+                          }
                         </div>
 
                         <div className='avatar-div'>
