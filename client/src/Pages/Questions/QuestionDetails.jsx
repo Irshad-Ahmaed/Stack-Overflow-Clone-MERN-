@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useParams, Link, useNavigate} from 'react-router-dom'
+import {useParams, Link, useNavigate, useLocation} from 'react-router-dom'
 
 import upVote from '../../assets/up_icon.svg'
 import downVote from '../../assets/down_icon.svg'
@@ -9,6 +9,9 @@ import Avatar from '../../components/Avatar/Avatar'
 import DisplayAnswer from './DisplayAnswer'
 import { useSelector, useDispatch } from 'react-redux'
 import { postAnswer } from '../../actions/question'
+
+import moment from 'moment' // for managing the time.
+import copy from 'copy-to-clipboard'
 
 const QuestionDetails = () => {
 
@@ -44,6 +47,9 @@ const QuestionDetails = () => {
   const dispatch = useDispatch()
 
   const User = useSelector((state) => state.currentUserReducer)
+  
+  const location = useLocation()
+  const url = 'http://localhost:3000'
 
   const handlePostAns = (e, answerLength) => {
     e.preventDefault();
@@ -57,6 +63,11 @@ const QuestionDetails = () => {
         setAnswer('')
       }
     }
+  }
+
+  const handleShare =() => {
+    copy(url+location.pathname)
+    alert("Copied url: " + url + location.pathname)
   }
 
   return (
@@ -75,7 +86,7 @@ const QuestionDetails = () => {
                   <h1 style={{color:"rgba(43, 43, 43, 0.9)", fontWeight:"400", fontSize:"30px"}}>{question.questionTitle}</h1>
 
                   <div className='ques-time-detail'>
-                    <p>Asked <span>{question.askedOn}</span></p>
+                    <p>Asked <span>{moment(question.askedOn).fromNow()}</span></p>
                     <p>Modified <span>{question.modifiedOn}</span></p>
                     <p>Viewed <span>{question.views} times</span></p>
                   </div>
@@ -93,7 +104,7 @@ const QuestionDetails = () => {
                     </div>
 
                     <div className='ques-tags'>
-                      <p className='question-body'>{question.questionBody}</p>
+                      <p className='question-body' style={{margin:"20px 0 0 0"}}>{question.questionBody}</p>
                       <div className='question-detail-tag'>
                         {
                           question.questionTags.map((tag)=>(
@@ -105,15 +116,15 @@ const QuestionDetails = () => {
                       <div className='question-action-user'>
 
                         <div className='share-btn-s'>
-                          <button type='button'>Share</button>
+                          <button type='button' onClick={handleShare}>Share</button>
                           <button type='button'>Delete</button>
                         </div>
 
                         <div className='avatar-div'>
-                          <p>asked {question.askedOn}</p>
+                          <p>asked {moment(question.askedOn).fromNow()}</p>
                           <div>
                             <Link to={`/User/${question.userId}`} className='user-link' style={{color:"#0086d8"}}>
-                              <Avatar><span className='ques-user-icon'>{question.userPosted.charAt(0).toUpperCase()}</span></Avatar>
+                              <Avatar><span style={{margin:"0"}} className='ques-user-icon'>{question.userPosted.charAt(0).toUpperCase()}</span></Avatar>
                               <div className='user-posted'>
                                 {question.userPosted}
                               </div>
@@ -135,7 +146,7 @@ const QuestionDetails = () => {
                           :
                           <h3 style={{fontWeight:"400",fontSize:"22px" }}>{question.answer.length} {question.answer.length > 1 ? 'Answers' : 'Answer'}</h3>
                         }
-                        <DisplayAnswer key={question._id} question={question} />
+                        <DisplayAnswer key={question._id} question={question} handleShare={handleShare} />
                       </section>
                     ) 
                   }

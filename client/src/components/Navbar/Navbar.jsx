@@ -31,10 +31,18 @@ const Navbar = () => {
             <Link to='/' className='nav-item nav-btn'>Products</Link>
             <Link to='/' className='nav-item nav-btn'>For Teams</Link>
 
-            <form>
+            {
+              User === null ? 
+              <form>
                 <input type='text' placeholder='Search...' />
                 <img src={search} alt='searchLogo' className='searchIcon' />
-            </form>
+              </form> 
+              :
+              <form style={{margin:"0 50px 0 0"}}>
+                <input type='text' placeholder='Search...' />
+                <img src={search} alt='searchLogo' className='searchIcon' />
+              </form>
+            }
 
             { User === null ?
                 <>
@@ -42,7 +50,7 @@ const Navbar = () => {
                   <Link to='/Auth/signup' className='nav-item nav-links signup'>Sign up</Link>
                 </> :
                 <>
-                  <Link to='/User' style={{margin:"0 0px 0 0"}} className='nav-links avatarLogo'><Avatar backgroundColor='#009dff' fontSize="20px" px="5px" py="15px" borderRadius='50%' color='white'>{User.result.name.charAt(0).toUpperCase()}</Avatar></Link>
+                  <Link to='/User' style={{margin:"0"}} className='nav-links avatarLogo'><Avatar backgroundColor='#009dff' fontSize="20px" px="5px" py="15px" borderRadius='50%' color='white'>{User.result.name.charAt(0).toUpperCase()}</Avatar></Link>
                   <button className='nav-item nav-links' style={{margin:"0 50px 0 0px"}}>Log out</button>
                 </>
             }
