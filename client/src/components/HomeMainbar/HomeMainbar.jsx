@@ -48,7 +48,20 @@ const HomeMainbar = () => {
 
       <div className=''>
         {
-          questionList.data === null ? <h1>Loading...</h1> : 
+          questionList.data === null
+          ?
+          <>
+            <h2 className='loading-effect'>
+              <span>L</span>
+              <span>o</span>
+              <span>a</span>
+              <span>d</span>
+              <span>i</span>
+              <span>n</span>
+              <span>g</span>
+              <span>...</span>
+            </h2>
+          </> : 
           <>
             <p>{questionList.data.length} questions</p>
             <QuestionList questionList={questionList.data} />

@@ -79,7 +79,18 @@ const QuestionDetails = () => {
     <div className='question-details-page'>
       {
         questionList.data === null ? 
-        <h1>Loading...</h1>
+        <>
+          <h2 className='loading-effect'>
+            <span>L</span>
+            <span>o</span>
+            <span>a</span>
+            <span>d</span>
+            <span>i</span>
+            <span>n</span>
+            <span>g</span>
+            <span>...</span>
+          </h2>
+        </>
         :
         <>
           {
