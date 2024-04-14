@@ -14,6 +14,7 @@ export const askQuestion = (questionData, navigate) => async (dispatch) => {
 
 export const fetchAllQuestions = () => async (dispatch) => {
   try {
+    console.log("fetched data")
     const {data} = await api.getAllQuestions()
     dispatch({ type: "FETCH_ALL_QUESTIONS", payload: data })
     
@@ -34,7 +35,7 @@ export const postAnswer = (answerData) => async (dispatch) => {
   }
 }
 
-export const deleteQuestion = (id, navigate) => async(dispatch) => {
+export const deleteQuestion = (id, navigate) => async (dispatch) => {
   try{
     const {data} =api.deleteQuestion(id)
     dispatch(fetchAllQuestions())

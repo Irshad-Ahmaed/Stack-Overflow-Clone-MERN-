@@ -8,11 +8,10 @@ import './Question.css'
 import Avatar from '../../components/Avatar/Avatar'
 import DisplayAnswer from './DisplayAnswer'
 import { useSelector, useDispatch } from 'react-redux'
-import { postAnswer } from '../../actions/question'
 
 import moment from 'moment' // for managing the time.
 import copy from 'copy-to-clipboard'
-import { deleteQuestion } from '../../actions/question'
+import {postAnswer, deleteQuestion } from '../../actions/question'
 
 const QuestionDetails = () => {
 
@@ -60,7 +59,7 @@ const QuestionDetails = () => {
       if(Answer === ''){
         alert("Enter an answer before submitting")
       } else{
-        dispatch(postAnswer({ id, noOfAnswer: answerLength + 1, answerBody: Answer, userAnswered: User.result.name }))
+        dispatch(postAnswer({ id, noOfAnswer: answerLength + 1, answerBody: Answer, userAnswered: User.result.name, userId: User.result._id }))
         setAnswer('')
       }
     }
@@ -135,7 +134,7 @@ const QuestionDetails = () => {
                           <button type='button' onClick={handleShare}>Share</button>
                           {
                             User?.result?._id === question?.userId &&
-                              (<button type='button' onClick={handleDelete}>Delete</button>)
+                            <button type='button' onClick={handleDelete}>Delete</button>
                           }
                         </div>
 
