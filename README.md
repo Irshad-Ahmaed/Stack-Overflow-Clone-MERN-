@@ -4,8 +4,21 @@ use the command `npm i create-react-app myapp`
 
 # Packages you need to install on the client side
 
+`npm i react-router-dom`
 `npm i redux`
 `npm i redux-thunk`
+`npm i moment`
+`npm i axios`
+
+# Packages you need to install on the server side
+
+`npm i express`
+`npm i mongodb`
+`npm i mongoose`
+`npm i cors`
+`npm i nodemon`
+`npm i bcryptjs`
+`npm i jsonwebtoken`
 
 ## Available Scripts
 
