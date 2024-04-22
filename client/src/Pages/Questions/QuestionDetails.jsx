@@ -59,8 +59,8 @@ const QuestionDetails = () => {
       if(Answer === ''){
         alert("Enter an answer before submitting")
       } else{
-        dispatch(postAnswer({ id, noOfAnswer: answerLength + 1, answerBody: Answer, userAnswered: User.result.name, userId: User.result._id }))
         setAnswer('')
+        dispatch(postAnswer({ id, noOfAnswer: answerLength + 1, answerBody: Answer, userAnswered: User.result.name, userId: User.result._id }))
       }
     }
   }
@@ -69,7 +69,7 @@ const QuestionDetails = () => {
     copy(url+location.pathname)
     alert("Copied url: " + url + location.pathname)
   }
-
+  
   const handleDelete = () => {
     dispatch(deleteQuestion(id, navigate))
   }
