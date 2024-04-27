@@ -26,6 +26,7 @@
     color: white;
     border: none;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 .main-bar-header .ask-btn:hover{
