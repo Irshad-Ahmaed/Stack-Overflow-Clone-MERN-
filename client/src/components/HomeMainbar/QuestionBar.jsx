@@ -1,8 +1,17 @@
 import moment from 'moment'
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { useDispatch, } from 'react-redux'
+import {Link, useNavigate} from 'react-router-dom'
+import { updateViews } from '../../actions/question'
 
 const QuestionBar = ({question}) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleView=(id)=>{
+    dispatch(updateViews(id,{views: question.views + 1}, navigate))
+  }
+
   return (
     <div className='display-question-container'>
         <div className='user-rating'>
@@ -28,7 +37,7 @@ const QuestionBar = ({question}) => {
 
         <div className='display-question-details'>
             <div>
-              <Link to={`/Questions/${question._id}`} className='question-title-link'>{question.questionTitle}</Link>
+              <Link to={`/Questions/${question._id}`} onClick={()=> handleView(question._id)} className='question-title-link'>{question.questionTitle}</Link>
             </div>
 
             {/* <p className='question-answer'>{question.questionBody}</p> */}

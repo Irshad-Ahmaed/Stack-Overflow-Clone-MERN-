@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './AskQuestion.css'
 
 import {useDispatch, useSelector} from 'react-redux'
-import {useNavigate} from 'react-router-dom'
-import {askQuestion} from '../../actions/question.js'
+import {useLocation, useNavigate} from 'react-router-dom'
+import {askQuestion, updateAskQuestion} from '../../actions/question.js'
 
 const AskQuestion = () => {
     const [toggleNext, setToggleNext] = useState(false)
@@ -11,6 +11,8 @@ const AskQuestion = () => {
 
     const [isDisableBody, setIsDisableBody] = useState(true)
     const [isDisableTags, setIsDisableTags] = useState(true)
+    const location = useLocation()
+    
 
     const toggleNextFun=()=>{
         setIsDisableBody(false);
@@ -36,8 +38,13 @@ const AskQuestion = () => {
 
     const handleSubmit = (e)=> {
         e.preventDefault()
-        // console.log({questionTitle ,questionBody, questionTags})
-        dispatch(askQuestion({ questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id }, navigate))
+        
+        if(!location.state?.id){
+            dispatch(askQuestion({ questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id }, navigate))
+        }
+        else{
+            dispatch(updateAskQuestion(location.state?.id, {questionTitle, questionBody, questionTags}, navigate))
+        }
     }
 
     const handleEnter = (e) =>{
@@ -45,6 +52,12 @@ const AskQuestion = () => {
             setQuestionBody(questionBody + "\n")
         }
     }
+
+    useEffect(()=>{
+        setQuestionTitle(location.state?.title)
+        setQuestionBody(location.state?.body)
+        setQuestionTags(location.state?.tags)
+    },[])
 
   return (
     <div className='ask-question'>
@@ -74,10 +87,19 @@ const AskQuestion = () => {
                     <label htmlFor='ask-ques-title'>
                         <h4>Title</h4>
                         <p>Be specific and imagine you're asking a question to another person.</p>
-                        <input type='text' name='questionTitle' id='ask-ques-title'
+                        {
+                            !location.state?.title
+                            ?
+                            <input type='text' name='questionTitle' id='ask-ques-title'
+                                placeholder="e.g. Is there an R function for finding the index of an element in a vector?" 
+                                onChange={(e) => {setQuestionTitle(e.target.value)}}
+                            />
+                            :
+                            <input type='text' name='questionTitle' id='ask-ques-title' value={questionTitle}
                             placeholder="e.g. Is there an R function for finding the index of an element in a vector?" 
                             onChange={(e) => {setQuestionTitle(e.target.value)}}
-                        />
+                            />
+                        }
                         {!toggleNext && !isActive && <button type='button' onClick={toggleNextFun} className='title-btn'>Next</button>}
                     </label>
                     
@@ -90,12 +112,22 @@ const AskQuestion = () => {
                     <label htmlFor='ask-ques-detail'>
                         <h4>What are the details of your problem?</h4>
                         <p>Introduce the problem and expand on what you put in the title. Minimum 20 characters.</p>
-                        <textarea id='ask-ques-detail' cols="30" rows="15"
-                         onChange={(e) => {setQuestionBody(e.target.value)}}
-                         disabled={isDisableBody}
-                         onKeyPress={handleEnter}
-                        >
-                        </textarea>
+                        {
+                            !location.state?.body
+                            ?
+                            <textarea id='ask-ques-detail' cols="30" rows="15"
+                            onChange={(e) => {setQuestionBody(e.target.value)}}
+                            disabled={isDisableBody}
+                            onKeyPress={handleEnter}
+                            ></textarea>
+                            :
+                            <textarea id='ask-ques-detail' cols="30" rows="15" value={questionBody}
+                            onChange={(e) => {setQuestionBody(e.target.value)}}
+                            disabled={isDisableBody}
+                            onKeyPress={handleEnter}
+                            ></textarea>
+                        }
+                        
                         { isActive && toggleNext ? <button type='button' onClick={isActiveFun} className='title-btn'>Next</button>: <div></div>}
                     </label>
                     
@@ -108,11 +140,21 @@ const AskQuestion = () => {
                     <label htmlFor='ques-tag'>
                         <h4>Tags</h4>
                         <p>Add up to 5 tags to describe what your question is about. Start typing to see suggestions.</p>
-                        <input type='text' name='questionTitle' id='ques-tag'
+                        {
+                            !location.state?.tags
+                            ?
+                            <input type='text' name='questionTitle' id='ques-tag'
                             placeholder="e.g. (postgresql laravel excel)" 
                             disabled={isDisableTags}
                             onChange={(e) => {setQuestionTags(e.target.value.split(" "))}}
-                        />
+                            />
+                            :
+                            <input type='text' name='questionTitle' id='ques-tag' value={questionTags}
+                            placeholder="e.g. (postgresql laravel excel)" 
+                            disabled={isDisableTags}
+                            onChange={(e) => {setQuestionTags(e.target.value.split(" "))}}
+                            />
+                        }
                         {!isActive && toggleNext && <button type='button' onClick={toggleNextFun} className='title-btn'>Next</button>}
                     </label>
                     

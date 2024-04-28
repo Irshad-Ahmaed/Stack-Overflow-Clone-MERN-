@@ -74,6 +74,10 @@ const QuestionDetails = () => {
     dispatch(deleteQuestion(id, navigate))
   }
 
+  const handleUpdate = (id, title, body, tags) => {
+    navigate('/AskQuestion', {state:{id, title, body, tags}})
+  }
+
   return (
     <div className='question-details-page'>
       {
@@ -102,7 +106,7 @@ const QuestionDetails = () => {
 
                   <div className='ques-time-detail'>
                     <p>Asked <span>{moment(question.askedOn).fromNow()}</span></p>
-                    <p>Modified <span>{question.modifiedOn}</span></p>
+                    <p>Modified <span>{moment(question.modifiedOn).fromNow()}</span></p>
                     <p>Viewed <span>{question.views} times</span></p>
                   </div>
 
@@ -135,6 +139,10 @@ const QuestionDetails = () => {
                           {
                             User?.result?._id === question?.userId &&
                             <button type='button' onClick={handleDelete}>Delete</button>
+                          }
+                          {
+                            User?.result?._id === question?.userId &&
+                            <button type='button' onClick={() => handleUpdate(question._id, question.questionTitle, question.questionBody, question.questionTags) }>Edit</button>
                           }
                         </div>
 

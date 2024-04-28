@@ -45,3 +45,24 @@ export const deleteQuestion = (id, navigate) => async (dispatch) => {
   }
 }
 
+export const updateAskQuestion = (id, askQuestionData, navigate) => async (dispatch)=> {
+  try {
+    await api.updateAskQuestion(id, askQuestionData)
+    dispatch(fetchAllQuestions())
+    navigate('/')
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const updateViews =(id, views, navigate) => async (dispatch)=> {
+  try {
+    console.log(views)
+    api.updateViews(id, views)
+    dispatch(fetchAllQuestions())
+    // navigate(`/Questions/${id}`)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
