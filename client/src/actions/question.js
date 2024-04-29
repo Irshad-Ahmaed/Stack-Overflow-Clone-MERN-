@@ -66,3 +66,22 @@ export const updateViews =(id, views, navigate) => async (dispatch)=> {
   }
 }
 
+export const editAnswer = (id, answerBody, navigate) => async(dispatch)=>{
+  try {
+    api.editAnswer(id, answerBody);
+    dispatch(fetchAllQuestions());
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const deleteAnswer = (id, navigate) => async(dispatch)=>{
+  try {
+    api.deleteAnswer(id);
+    dispatch(fetchAllQuestions());
+    navigate('/')
+  } catch (error) {
+    console.log(error);
+  }
+}
+

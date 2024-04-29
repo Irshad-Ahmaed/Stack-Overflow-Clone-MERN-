@@ -26,3 +26,35 @@ const updateNoOfAnswer = async(_id, noOfAnswers) => {
         console.log(error)
     }
 }
+
+export const editAnswer = async(req, res)=> {
+    const {id: _id} = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('question unavailable...')
+    }
+
+    const {answerBody} = req.body;
+
+    try {
+        await Questions.findByIdAndUpdate(_id, {$set: {answerBody}})
+        res.status(200).json({message: "Answer updated..."})
+    } catch (error) {
+        res.status(404).json({message: error.message})
+    }
+}
+
+export const deleteAnswer = async (req, res) => {
+    const {id:_id} =req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('question unavailable...')
+    }
+
+    try {
+        await Questions.findByIdAndDelete(_id)
+        res.status(200).json({message: "successfully deleted..."})
+    } catch (error) {
+        res.status(404).json({message: error.message})
+    }
+}

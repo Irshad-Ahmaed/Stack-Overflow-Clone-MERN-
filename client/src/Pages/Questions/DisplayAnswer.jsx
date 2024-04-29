@@ -1,13 +1,28 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 import upVote from '../../assets/up_icon.svg'
 import downVote from '../../assets/down_icon.svg'
 
 import Avatar from '../../components/Avatar/Avatar'
 import moment from 'moment'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteAnswer, editAnswer } from '../../actions/question'
 
 const DisplayAnswer = ({question, handleShare}) => {
+
+  const User = useSelector((state) => state.currentUserReducer)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  
+  const handleDelete =(id)=>{
+    dispatch(deleteAnswer(id, navigate))
+  }
+
+  const handleUpdate =(id, ansBody)=>{
+    dispatch(editAnswer(id, ansBody, navigate))
+  }
+  
   return (
     <div>
       {
@@ -26,7 +41,15 @@ const DisplayAnswer = ({question, handleShare}) => {
             <div className='question-action-user' style={{margin:"0 0px 72px 67px"}}>
               <div className='share-btn-s' style={{margin:"0"}}>
                 <button type='button' onClick={handleShare}>Share</button>
-                <button type='button'>Delete</button>
+                {
+                  User?.result?._id === question?.userId &&
+                  <button type='button' onClick={() => handleDelete(ans._id)}>Delete</button>
+                }
+                {
+                  User?.result?._id === question?.userId &&
+                  <button type='button' onClick={() => handleUpdate(ans._id, ans.answerBody) }>Edit</button>
+                }
+                
               </div>
 
               <div className='avatar-div' style={{backgroundColor:"white"}}>

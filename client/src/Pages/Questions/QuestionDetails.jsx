@@ -17,31 +17,7 @@ const QuestionDetails = () => {
 
   const {id} = useParams()
   const questionList = useSelector(state => state.questionReducer)
-
-  // let questionList = [{
-  //   _id: '1',
-  //   upVotes: 3,
-  //   downVotes: 1,
-  //   views: 4,
-  //   noOfAnswer: 2,
-  //   questionTitle: "What is a function?",
-  //   detailQuestion: "What is a function a how it works, I don't get it someone help please",
-  //   questionTags: ["java", "node.js", "react.js"],
-  //   userPosted: "Irshad",
-  //   userId: 1,
-  //   askedOn: "March 11",
-  //   modifiedOn: "Today",
-  //   answer:[{
-  //     answerBody: "Answer",
-  //     QAnswer: "A function is a relationship between inputs where each input is related to exactly one output.",
-  //     userAnswered: "Ahmad",
-  //     answeredOn: "March 12",
-  //     userId: '2',
-  //     ansUpVotes: 1,
-  //     ansDownVotes: 1
-  //   }]
-  // }]
-
+  
   const [Answer, setAnswer] = useState('')
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -53,6 +29,8 @@ const QuestionDetails = () => {
 
   const handlePostAns = (e, answerLength) => {
     e.preventDefault();
+    setAnswer('');
+
     if(User === null){
       alert("Login or Signup for answer the question")
     } else{
@@ -181,7 +159,7 @@ const QuestionDetails = () => {
                     <h3 style={{fontWeight:"400",fontSize:"21px" }}>Your Answer</h3>
                     
                     <form onSubmit={ (e) => handlePostAns(e, question.answer.length)}>
-                      <textarea rows='11' cols='94' onChange={(e) => setAnswer(e.target.value)} style={{border:"2px solid rgb(116, 115, 115, 0.5)"}}></textarea>
+                      <textarea rows='11' cols='94' value={Answer} onChange={(e) => setAnswer(e.target.value)} style={{border:"2px solid rgb(116, 115, 115, 0.5)"}}></textarea>
                       <input type='submit' className='post-ans-btn' value='Post Your Answer' />
                     </form>
 
