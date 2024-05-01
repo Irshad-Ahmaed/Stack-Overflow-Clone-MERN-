@@ -24,20 +24,6 @@ const HomeMainbar = () => {
     }
   }
 
-  // let questionList = [{
-  //   _id: 1,
-  //   votes: 3,
-  //   views: 4,
-  //   noOfAnswer: 2,
-  //   questionTitle: "What is a function?",
-  //   detailQuestion: "What is a function a how it works, I don't get it someone help please",
-  //   questionTags: ["java", "node.js", "react.js"],
-  //   shortAnswer: "A function is a relationship between inputs where each input is related to exactly one output.",
-  //   userPosted: "Irshad",
-  //   userId: 1,
-  //   askedOn: "March 11"
-  // }]
-
   return (
     <div className='main-bar'>
       <div className='main-bar-header'>

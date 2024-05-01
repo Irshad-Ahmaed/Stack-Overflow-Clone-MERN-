@@ -38,7 +38,7 @@ const QuestionDetails = () => {
         alert("Enter an answer before submitting")
       } else{
         setAnswer('')
-        dispatch(postAnswer({ id, noOfAnswer: answerLength + 1, answerBody: Answer, userAnswered: User.result.name, userId: User.result._id }))
+        dispatch(postAnswer({ id, noOfAnswers: answerLength + 1, answerBody: Answer, userAnswered: User.result.name, userId: User.result._id }))
       }
     }
   }
@@ -141,10 +141,10 @@ const QuestionDetails = () => {
                   </div>
 
                   {
-                    question.noOfAnswer !== 0 && (
+                    question.noOfAnswers !== 0 && (
                       <section className='ans-vote-display'>
                         {
-                          question.noOfAnswer === null
+                          question.noOfAnswers === null
                           ? 
                           <h3> </h3>
                           :

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 
 import upVote from '../../assets/up_icon.svg'
 import downVote from '../../assets/down_icon.svg'
@@ -7,20 +7,16 @@ import downVote from '../../assets/down_icon.svg'
 import Avatar from '../../components/Avatar/Avatar'
 import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteAnswer, editAnswer } from '../../actions/question'
+import { editAnswer } from '../../actions/question'
 
 const DisplayAnswer = ({question, handleShare}) => {
 
+  const { id } = useParams();
   const User = useSelector((state) => state.currentUserReducer)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  
-  const handleDelete =(id)=>{
-    dispatch(deleteAnswer(id, navigate))
-  }
 
-  const handleUpdate =(id, ansBody)=>{
-    dispatch(editAnswer(id, ansBody, navigate))
+  const handleDelete =(ansId, noOfAnswers)=>{
+    dispatch(editAnswer(id, ansId, noOfAnswers - 1))
   }
   
   return (
@@ -42,12 +38,8 @@ const DisplayAnswer = ({question, handleShare}) => {
               <div className='share-btn-s' style={{margin:"0"}}>
                 <button type='button' onClick={handleShare}>Share</button>
                 {
-                  User?.result?._id === question?.userId &&
-                  <button type='button' onClick={() => handleDelete(ans._id)}>Delete</button>
-                }
-                {
-                  User?.result?._id === question?.userId &&
-                  <button type='button' onClick={() => handleUpdate(ans._id, ans.answerBody) }>Edit</button>
+                  User?.result?._id === ans?.userId &&
+                  <button type='button' onClick={() => handleDelete(ans._id, question.noOfAnswers) }>Delete</button>
                 }
                 
               </div>

@@ -29,32 +29,23 @@ const updateNoOfAnswer = async(_id, noOfAnswers) => {
 
 export const editAnswer = async(req, res)=> {
     const {id: _id} = req.params;
+    const {answerId, noOfAnswers} = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(_id)) {
         return res.status(404).send('question unavailable...')
     }
 
-    const {answerBody} = req.body;
-
-    try {
-        await Questions.findByIdAndUpdate(_id, {$set: {answerBody}})
-        res.status(200).json({message: "Answer updated..."})
-    } catch (error) {
-        res.status(404).json({message: error.message})
-    }
-}
-
-export const deleteAnswer = async (req, res) => {
-    const {id:_id} =req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(_id)) {
+    if (!mongoose.Types.ObjectId.isValid(answerId)) {
         return res.status(404).send('question unavailable...')
     }
 
+    updateNoOfAnswer(_id, noOfAnswers)
+
     try {
-        await Questions.findByIdAndDelete(_id)
-        res.status(200).json({message: "successfully deleted..."})
+        // await Questions.findByIdAndUpdate(_id, {$pull: {'answer': {_id: answerId}}})
+        await Questions.updateOne({_id}, {$pull: {'answer': {_id: answerId}}})
+        res.status(200).json({message: "Successfully deleted answer..."})
     } catch (error) {
-        res.status(404).json({message: error.message})
+        res.status(405).json(error)
     }
 }

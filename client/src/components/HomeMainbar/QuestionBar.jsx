@@ -1,16 +1,23 @@
 import moment from 'moment'
 import React from 'react'
-import { useDispatch, } from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
 import { updateViews } from '../../actions/question'
 
 const QuestionBar = ({question}) => {
+  // const { id } = useParams();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const User = useSelector((state) => state.currentUserReducer);
+  
   const handleView=(id)=>{
-    dispatch(updateViews(id,{views: question.views + 1}, navigate))
+
+    if(User?.result?._id === question?.userId){
+      dispatch(updateViews(id,{views: question.views + 1}, navigate))
+    }
   }
+  
 
   return (
     <div className='display-question-container'>

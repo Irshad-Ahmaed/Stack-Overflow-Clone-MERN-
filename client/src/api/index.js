@@ -11,6 +11,6 @@ export const deleteQuestion = (id) => API.delete(`/questions/delete/${id}`)
 export const updateAskQuestion = (id, askQuestionData) => API.put(`/questions/update/${id}`, askQuestionData)
 export const updateViews = (id, views) => API.put(`/questions/updateViews/${id}`, views)
 
-export const postAnswer = (id, noOfAnswers, answerBody, userAnswered) => API.patch(`/answer/post/${id}`, {noOfAnswers, answerBody, userAnswered})
-export const editAnswer = (id, answerBody) => API.put(`/answer/editAnswer/${id}`, answerBody)
-export const deleteAnswer = (id) => API.delete(`/answer/deleteAnswer/${id}`)
+export const postAnswer = (id, noOfAnswers, answerBody, userAnswered, userId) => API.patch(`/answer/post/${id}`, {noOfAnswers, answerBody, userAnswered, userId})
+
+export const editAnswer = (id, answerId, noOfAnswers) => API.patch(`/answer/updateAnswer/${id}`, {answerId, noOfAnswers})
