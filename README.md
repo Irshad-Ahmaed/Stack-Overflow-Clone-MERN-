@@ -1,8 +1,11 @@
-# Getting Started with Create React App
+# Getting Started with Installing packages
 
-use the command `npm i create-react-app myapp`
+use `cd client`
+use `cd server`
 
-# Packages you need to install on the client side
+use the command `npm install` in both files
+
+# Packages present on the client side
 
 `npm i react-router-dom`
 `npm i redux`
@@ -10,7 +13,7 @@ use the command `npm i create-react-app myapp`
 `npm i moment`
 `npm i axios`
 
-# Packages you need to install on the server side
+# Packages present on the server side
 
 `npm i express`
 `npm i mongodb`
