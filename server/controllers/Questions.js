@@ -64,7 +64,6 @@ export const updateViews = async(req, res)=> {
     }
 
     const {views} = req.body;
-    console.log(views);
     
     try {
         await Questions.findByIdAndUpdate(_id, {$set: {views}})

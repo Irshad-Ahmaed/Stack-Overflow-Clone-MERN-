@@ -13,4 +13,4 @@ export const updateViews = (id, views) => API.put(`/questions/updateViews/${id}`
 
 export const postAnswer = (id, noOfAnswers, answerBody, userAnswered, userId) => API.patch(`/answer/post/${id}`, {noOfAnswers, answerBody, userAnswered, userId})
 
-export const editAnswer = (id, answerId, noOfAnswers) => API.patch(`/answer/updateAnswer/${id}`, {answerId, noOfAnswers})
+export const deleteAnswer = (id, answerId, noOfAnswers) => API.patch(`/answer/updateAnswer/${id}`, {answerId, noOfAnswers})

@@ -64,9 +64,9 @@ export const updateViews =(id, views, navigate) => async (dispatch)=> {
   }
 }
 
-export const editAnswer = (id, answerId, noOfAnswers) => async (dispatch)=>{
+export const deleteAnswer = (id, answerId, noOfAnswers) => async (dispatch)=>{
   try {
-    api.editAnswer(id, answerId, noOfAnswers);
+    api.deleteAnswer(id, answerId, noOfAnswers);
     dispatch(fetchAllQuestions());
   } catch (error) {
     console.log(error);

@@ -7,7 +7,7 @@ import downVote from '../../assets/down_icon.svg'
 import Avatar from '../../components/Avatar/Avatar'
 import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux'
-import { editAnswer } from '../../actions/question'
+import { deleteAnswer } from '../../actions/question'
 
 const DisplayAnswer = ({question, handleShare}) => {
 
@@ -16,7 +16,7 @@ const DisplayAnswer = ({question, handleShare}) => {
   const dispatch = useDispatch()
 
   const handleDelete =(ansId, noOfAnswers)=>{
-    dispatch(editAnswer(id, ansId, noOfAnswers - 1))
+    dispatch(deleteAnswer(id, ansId, noOfAnswers - 1))
   }
   
   return (

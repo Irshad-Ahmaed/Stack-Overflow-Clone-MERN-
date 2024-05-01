@@ -27,7 +27,7 @@ const updateNoOfAnswer = async(_id, noOfAnswers) => {
     }
 }
 
-export const editAnswer = async(req, res)=> {
+export const deleteAnswer = async(req, res)=> {
     const {id: _id} = req.params;
     const {answerId, noOfAnswers} = req.body;
 
