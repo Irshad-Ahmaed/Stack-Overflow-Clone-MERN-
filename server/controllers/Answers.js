@@ -49,3 +49,23 @@ export const deleteAnswer = async(req, res)=> {
         res.status(405).json(error)
     }
 }
+
+export const editAnswer= async (req, res) =>{
+    const {id: _id} = req.params;
+    const {answerId, answerBody} = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
+        return res.status(404).send('question unavailable...')
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(answerId)) {
+        return res.status(404).send('question unavailable...')
+    }
+
+    try {
+        await Questions.findByIdAndUpdate(_id, {$set : {'answer': {answerBody}}})
+        res.status(200).json({message: "successfully edited..."})
+    } catch (error) {
+        res.status(405).json(error)
+    }
+} 

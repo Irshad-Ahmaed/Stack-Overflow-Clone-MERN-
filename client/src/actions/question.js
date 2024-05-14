@@ -73,3 +73,18 @@ export const deleteAnswer = (id, answerId, noOfAnswers) => async (dispatch)=>{
   }
 }
 
+export const editAnswer = (id, answerId, answerBody)=> async (dispatch)=> {
+
+}
+
+export const voteQuestion = (id, value, userId) => async (dispatch) => {
+  try {
+    console.log("reach action")
+    await api.voteQuestion(id, value, userId);
+    console.log("reach action 2")
+    dispatch(fetchAllQuestions());
+  } catch (error) {
+    console.log(error)
+  }
+}
+

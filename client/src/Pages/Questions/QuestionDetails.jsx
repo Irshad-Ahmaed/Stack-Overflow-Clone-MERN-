@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import moment from 'moment' // for managing the time.
 import copy from 'copy-to-clipboard'
-import {postAnswer, deleteQuestion } from '../../actions/question'
+import {postAnswer, deleteQuestion, voteQuestion } from '../../actions/question'
 
 const QuestionDetails = () => {
 
@@ -55,6 +55,16 @@ const QuestionDetails = () => {
   const handleUpdate = (id, title, body, tags) => {
     navigate('/AskQuestion', {state:{id, title, body, tags}})
   }
+  
+  const handleUpVote =()=>{
+    console.log("Up vote")
+    dispatch(voteQuestion(id, 'upVote', User.result._id ))
+  }
+
+  const handleDownVote =()=>{
+    console.log("down vote")
+    dispatch(voteQuestion(id, 'downVote', User.result._id ))
+  }
 
   return (
     <div className='question-details-page'>
@@ -95,9 +105,9 @@ const QuestionDetails = () => {
                   <div className='question-detail-container-2'>
 
                     <div className='question-votes'>
-                      <div><img src={upVote} alt='upArrow' width='15' /></div>
-                      <p>{question.upVotes - question.downVotes}</p>
-                      <div><img src={downVote} alt='downArrow' width='15' /></div>
+                      <div><img src={upVote} alt='upArrow' width='15' onClick={handleUpVote} /></div>
+                      <p>{question.upVote.length - question.downVote.length}</p>
+                      <div><img src={downVote} alt='downArrow' width='15' onClick={handleDownVote} /></div>
                     </div>
 
                     <div className='ques-tags'>

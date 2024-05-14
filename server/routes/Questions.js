@@ -1,6 +1,6 @@
 import express from 'express'
 
-import {AskQuestion, getAllQuestions, deleteQuestion, updateAskQuestion, updateViews} from '../controllers/Questions.js'
+import {AskQuestion, getAllQuestions, deleteQuestion, updateAskQuestion, updateViews, voteQuestion} from '../controllers/Questions.js'
 
 const router = express.Router()
 
@@ -10,5 +10,6 @@ router.get('/get', getAllQuestions)
 router.delete('/delete/:id', deleteQuestion);
 router.put('/update/:id', updateAskQuestion);
 router.put('/updateViews/:id', updateViews);
+router.patch('/vote/:id', voteQuestion);
 
 export default router;

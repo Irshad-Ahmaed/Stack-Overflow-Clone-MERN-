@@ -23,7 +23,7 @@ const QuestionBar = ({question}) => {
     <div className='display-question-container'>
         <div className='user-rating'>
           <div className='display-votes-ans'>
-              <p style={{color:"black"}}>{question.upVotes - question.downVotes}</p>
+              <p style={{color:"black"}}>{question.upVote.length - question.downVote.length}</p>
               <p style={{color:"black"}}>votes</p>
           </div>
 
