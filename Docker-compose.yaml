@@ -1,0 +1,42 @@
+version: '2.28.1'
+
+services:
+  web:
+    depends_on:
+      - be
+    build: ./client
+    container_name: stack-overflow-fe
+    ports:
+      - '3000:3000'
+    develop:
+      watch:
+        - path: ./client/package.json
+          action: rebuild
+        - path: ./client/package-lock.json
+          action: rebuild
+        - path: ./client
+          target: /app
+          action: sync
+
+  be:
+    depends_on:
+      - db
+    build: ./server
+    container_name: stack-overflow-be
+    ports:
+      - '5005:5005'
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+
+  db:
+    image: mongo:latest
+    container_name: api_mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - stack:/data/db
+  
+volumes:
+  stack: 
