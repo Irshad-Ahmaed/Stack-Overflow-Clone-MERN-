@@ -28,8 +28,8 @@ app.use('/user', userRoutes)
 app.use('/questions', questionRoutes)
 app.use('/answer', answerRoutes)
 
-// const Connection_URL = "mongodb+srv://Irshad:Irshad7865@stack-overflow-clone.xtgnlnb.mongodb.net/?retryWrites=true&w=majority&appName=stack-overflow-clone"
-const Connection_URL = "mongodb://api_mongo:27017/User"
+const Connection_URL = "mongodb+srv://Irshad:Irshad7865@stack-overflow-clone.xtgnlnb.mongodb.net/?retryWrites=true&w=majority&appName=stack-overflow-clone"
+// const Connection_URL = "mongodb://api_mongo:27017/User"
 
 mongoose.connect(Connection_URL)
     .then(()=> app.listen(PORT, ()=> {console.log(`Server running on port ${PORT}`)}))
