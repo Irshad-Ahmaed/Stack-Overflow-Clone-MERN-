@@ -9,7 +9,14 @@ import answerRoutes from './routes/Answers.js'
 const app = express();
 app.use(express.json({limit:"30mb", extended: true}))
 app.use(express.urlencoded({limit:"30mb", extended: true}))
-app.use(cors())
+
+app.use(cors(
+    {
+        origin: ["https://stack-overflow-clone-web.vercel.app/"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+))
 
 const PORT = process.env.PORT || 5005
 
