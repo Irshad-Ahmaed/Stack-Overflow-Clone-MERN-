@@ -13,7 +13,7 @@ app.use(express.urlencoded({limit:"30mb", extended: true}))
 app.use(cors(
     {
         origin: ["https://stack-overflow-clone-web.vercel.app"],
-        methods: ["POST", "GET"],
+        methods: ["POST", "GET", "PATCH", "DELETE"],
         credentials: true
     }
 ))
